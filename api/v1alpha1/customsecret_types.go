@@ -17,6 +17,9 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"time"
+
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -27,15 +30,19 @@ import (
 type CustomSecretSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	SecretType   corev1.SecretType `json:"secretType"`
+	RotationTime time.Duration     `json:"rotationTime"`
+}
 
-	// Foo is an example field of CustomSecret. Edit customsecret_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+type SecretUpdateStatus struct {
+	Name      string      `json:"name"`
+	Namespace string      `json:"namespace"`
+	UpdatedAt metav1.Time `json:"updatedAt"`
 }
 
 // CustomSecretStatus defines the observed state of CustomSecret.
 type CustomSecretStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	UpdatedSecrets []SecretUpdateStatus `json:"secreteUpdatedstatus"`
 }
 
 // +kubebuilder:object:root=true
