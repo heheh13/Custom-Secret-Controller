@@ -30,8 +30,8 @@ import (
 type CustomSecretSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
-	SecretType   corev1.SecretType `json:"secretType"`
-	RotationTime time.Duration     `json:"rotationTime"`
+	SecretType       corev1.SecretType `json:"secretType"`
+	RotationInterval time.Duration     `json:"rotationInterval"`
 }
 
 type SecretUpdateStatus struct {

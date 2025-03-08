@@ -5,6 +5,9 @@ CustomSecret contrller can automatically create random secret values.
 CustomSecret contrller can automatically create random secret values. This may be used for auto-generating random credentials for applications run on
 Kubernetes. The controller will generate the kubernetes native secret resource based on the provides
 specs in the CR. if secretType is basic-auth, username is admin and passwordLength is 40
+
+[![asciicast](https://asciinema.org/a/cNbwyorYuzFRXhpwx72vBuvOe.svg)](https://asciinema.org/a/cNbwyorYuzFRXhpwx72vBuvOe)
+
 ## Getting Started
 
 ### Prerequisites

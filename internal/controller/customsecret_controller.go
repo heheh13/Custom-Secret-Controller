@@ -84,7 +84,7 @@ func (r *CustomSecretReconciler) Reconcile(ctx context.Context, req ctrl.Request
 
 	if errSec == nil { // Secret exists, check rotation time
 		if !r.shouldRotateSecret(cs, req) {
-			klog.Info("Secret rotation not needed yet", req.NamespacedName)
+			klog.Info("Secret rotation not needed yet ", req.NamespacedName)
 			return ctrl.Result{RequeueAfter: time.Minute}, nil
 		}
 	}
@@ -123,7 +123,7 @@ func (r *CustomSecretReconciler) shouldRotateSecret(cs *v1alpha1.CustomSecret, r
 	timeDifference := now.Sub(lastUpdated.Time)
 
 	klog.Infoln(req.NamespacedName, "time since last update: ", timeDifference)
-	return timeDifference >= cs.Spec.RotationTime
+	return timeDifference >= cs.Spec.RotationInterval
 }
 
 func (r *CustomSecretReconciler) createNewSecret(cs *v1alpha1.CustomSecret, req ctrl.Request) (*corev1.Secret, error) {
